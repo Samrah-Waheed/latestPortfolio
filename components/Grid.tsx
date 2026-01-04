@@ -1,7 +1,18 @@
+"use client";
+
 import { gridItems } from "@/data";
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
+import { useEffect, useState } from "react";
 
 const Grid = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true); // ensures client-only code
+  }, []);
+
+  if (!isClient) return null; // SSR par kuch render nahi hoga
+
   return (
     <section id="about">
       <BentoGrid className="w-full py-20">
@@ -11,8 +22,6 @@ const Grid = () => {
             key={i}
             title={item.title}
             description={item.description}
-            // remove icon prop
-            // remove original classname condition
             className={item.className}
             img={item.img}
             imgClassName={item.imgClassName}

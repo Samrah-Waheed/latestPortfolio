@@ -4,8 +4,17 @@ import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null; // server par kuch render nahi hoga
+
   return (
     <div className="pb-20 pt-36">
       {/* Spotlights */}
